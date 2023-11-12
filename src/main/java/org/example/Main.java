@@ -34,17 +34,17 @@ public class Main {
         Tandem client = new Tandem(userService, palindromeService);
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int i = 1; i <= 5; i++) {
+        while (true) {
             System.out.print("Имя: ");
             String userName = console.readLine();
             System.out.print("Палиндром: ");
             String palindrome = console.readLine();
 
             User user = client.input(userName, palindrome);
-            System.out.println(user != null ? user.toString() : "Фраза не является палиндромом и указанный пользователь ранее не работал с системой");
+            System.out.println(user != null ? user.toString() : "Фраза не является палиндромом");
+            System.out.println("Leaderboard:");
+            List<Leader> leaderboard = leaderboardService.get();
+            leaderboard.forEach(System.out::println);
         }
-        System.out.println("Leaderboard:");
-        List<Leader> leaderboard = leaderboardService.get();
-        leaderboard.forEach(System.out::println);
     }
 }

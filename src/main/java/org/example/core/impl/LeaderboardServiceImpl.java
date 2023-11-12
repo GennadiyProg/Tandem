@@ -31,8 +31,7 @@ public class LeaderboardServiceImpl implements LeaderboardService {
             leaderDao.save(leaderboard);
             return true;
         } else {
-            Leader lastLeader = leaderboard.get(leaderboard.size() - 1);
-            if (lastLeader.getScore() <= user.getScore()) {
+            if (leaderboard.size() < 5 || leaderboard.get(leaderboard.size() - 1).getScore() < user.getScore()) {
                 Optional<Leader> existingLeader;
                 existingLeader = leaderboard
                         .stream()
